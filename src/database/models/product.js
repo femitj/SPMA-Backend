@@ -4,23 +4,32 @@ const { Schema } = mongoose;
 
 const ProductSchema = new Schema(
   {
-    name: String,
-    price: String,
-    address: String,
-    quantity: Number,
-    imageUrl: String,
-    userId: {
-      type: Schema.Types.ObjectId,
-      ref: 'user',
+    name: {
+      type: String,
+      required: true,
     },
     description: String,
+    address: {
+      type: String,
+      required: true,
+    },
+    quantity: Number,
+    imageUrl: String,
     mapCordinate: String,
-    price: String,
+    price: {
+      type: String,
+      required: true,
+    },
     status: String,
-    lgaId: [
+    lga: String,
+    userId: {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+    },
+    comments: [
       {
         type: Schema.Types.ObjectId,
-        ref: 'Lga',
+        ref: 'comment',
       },
     ],
   },

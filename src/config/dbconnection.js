@@ -11,8 +11,8 @@ async function dbConnection() {
     })
     .then(mongoDBConnected);
 
-  await disconnectDB();
-  await seedUsers();
+  // await disconnectDB();
+  // await seedUsers();
   // await seedProperties();
   // await seedCandidates();
   // await seedFamilies();

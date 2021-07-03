@@ -7,5 +7,7 @@ export default [
     password: 'password',
     status: 'active',
     role: 'super admin',
+    address: 'no 4, adebola',
+    lga: 'surulere',
   },
 ];

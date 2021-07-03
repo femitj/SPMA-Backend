@@ -19,27 +19,36 @@ const UserSchema = new Schema(
     },
     address: {
       type: String,
+      required: [true, 'Address field is required'],
     },
     imageUrl: {
       type: String,
     },
     email: {
       type: String,
+      validate: {
+        validator: (v) =>
+          /^\w.+@[a-zA-Z_]+?(\.[a-zA-Z]{2,8})(\.[a-zA-Z]{2,8})?$/.test(v),
+        message: (props) => `${props.value} is not a valid email address`,
+      },
       required: [true, 'Email field is required'],
+      unique: true,
     },
     password: {
       type: String,
       required: [true, 'Password is required'],
       minlength: [4, 'Password cannot be less than four'],
     },
-    status: String,
+    status: {
+      type: String,
+      required: true,
+      enum: ['pending', 'active', 'inactive'],
+    },
     role: String,
-    lgaId: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'lga',
-      },
-    ],
+    lga: {
+      type: String,
+      required: true,
+    },
   },
   { timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' } }
 );

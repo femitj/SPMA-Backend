@@ -1,4 +1,4 @@
-import userModel from '../model/users';
+import userModel from '../models/users';
 import User from './user';
 
 export async function seedUsers() {
