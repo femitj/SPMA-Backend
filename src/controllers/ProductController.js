@@ -102,6 +102,39 @@ class ProductController {
       return res.status(response.code).json(response);
     }
   }
+
+  static async myProducts(req, res) {
+    try {
+      const { payload } = req.payload;
+      const { id: userId } = payload;
+
+      const products = await Product.find({ userId }).populate({
+        path: 'userId',
+        select: 'firstName lastName email id status',
+      });
+
+      if (!products.length) {
+        const response = new Response(false, 400, 'No product found');
+        return res.status(response.code).json(response);
+      }
+
+      const response = new Response(
+        true,
+        200,
+        'Successfully retreived',
+        products
+      );
+      return res.status(response.code).json(response);
+    } catch (error) {
+      console.log(error);
+      const response = new Response(
+        false,
+        500,
+        'Server error, Please try again later'
+      );
+      return res.status(response.code).json(response);
+    }
+  }
 }
 
 export default ProductController;

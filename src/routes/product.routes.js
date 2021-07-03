@@ -7,7 +7,9 @@ const productRoute = Router();
 
 productRoute.post('/create', TokenHelper.verifyToken, Product.create);
 
-productRoute.get('/all', TokenHelper.verifyToken, Product.getAllProducts);
+productRoute.get('/all', Product.getAllProducts);
+
+productRoute.get('/me', TokenHelper.verifyToken, Product.myProducts);
 
 productRoute.get(
   '/available_location',
