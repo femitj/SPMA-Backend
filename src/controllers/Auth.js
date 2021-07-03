@@ -10,12 +10,11 @@ class Auth {
   static async create(req, res) {
     try {
       const { firstName, lastName, email, password, address, lga } = req.body;
-
       const newUser = new User({
         firstName,
         lastName,
         email,
-        password: hashPassword(password),
+        password,
         address,
         lga,
         status: 'active',
@@ -55,7 +54,6 @@ class Auth {
         );
         return res.status(response.code).json(response);
       }
-
       const hash = user.password;
       const result = hashHelper.comparePassword(hash, password);
       if (!result) {

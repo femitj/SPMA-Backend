@@ -27,7 +27,7 @@ app.use(cors());
 
 dbConnection();
 
-app.get('/api', (req, res) => {
+app.get('/api/v1', (req, res) => {
   res.status(200).json({
     status: 200,
     message: 'Welcome to SMPA API',
