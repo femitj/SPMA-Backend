@@ -1,9 +1,5 @@
 import mongoose from 'mongoose';
-// import { seedUsers, seedProperties } from './seed';
-// import { seedUsers, seedCamps, seedCandidates, seedFamilies } from './seed';
-
-// 'mongodb://localhost/loaftyheaight'
-// process.env.MONGODBURL `${process.env.MONGO_URL}`
+import { seedUsers } from '../database/seeds/seed';
 
 async function dbConnection() {
   await mongoose
