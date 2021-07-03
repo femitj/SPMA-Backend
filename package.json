@@ -8,7 +8,7 @@
     "build-babel": "babel -d ./build ./src -s",
     "build": "npm run clean && npm run build-babel",
     "devstart": "nodemon --exec babel-node src/index.js",
-    "prod": "babel-node src/index.js"
+    "prod": "npm run build"
   },
   "repository": {
     "type": "git",
