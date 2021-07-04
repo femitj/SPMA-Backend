@@ -94,6 +94,21 @@ UserSchema.methods.hashPassword = function (candidateNewPassword) {
   });
 };
 
+UserSchema.pre('findOneAndUpdate', function (next) {
+  const { password } = this.getUpdate().$set;
+  if (!password) {
+    return next();
+  }
+  try {
+    const salt = bcrypt.genSaltSync();
+    const hash = bcrypt.hashSync(password, salt);
+    this.getUpdate().$set.password = hash;
+    next();
+  } catch (error) {
+    return next(error);
+  }
+});
+
 const userModel = mongoose.model('User', UserSchema);
 
 export default userModel;

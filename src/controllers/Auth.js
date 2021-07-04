@@ -54,8 +54,7 @@ class Auth {
         );
         return res.status(response.code).json(response);
       }
-      const hash = user.password;
-      const result = hashHelper.comparePassword(hash, password);
+      const result = user.comparePassword(password);
       if (!result) {
         const response = new Response(
           false,
